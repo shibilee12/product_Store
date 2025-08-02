@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Place Order{% endblock %}
+{% block content %}
+<h2 class="mb-4">Place Order</h2>
+<form method="post">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="product" class="form-label">Product</label>
+    <select name="product_id" class="form-select">
+      {% for product in products %}
+      <option value="{{ product.id }}">{{ product.name }} (₹{{ product.price }})</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="quantity" class="form-label">Quantity</label>
+    <input type="number" name="quantity" class="form-control" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit Order</button>
+</form>
+{% endblock %}

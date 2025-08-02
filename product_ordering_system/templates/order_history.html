@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Your Order History</h2>
+{% for order in orders %}
+    <div>
+        <p><strong>Date:</strong> {{ order.created_at }}</p>
+        <p><strong>Total:</strong> ₹{{ order.total_price }}</p>
+        <ul>
+        {% for item in order.items.all %}
+            <li>{{ item.product.name }} × {{ item.quantity }}</li>
+        {% endfor %}
+        </ul>
+        <hr>
+    </div>
+{% endfor %}
+{% endblock %}
